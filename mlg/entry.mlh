@@ -1,0 +1,12 @@
+/*
+
+    date: 1/2/2024
+
+*/
+
+# if not defined ENTRY_MLH_
+# define         ENTRY_MLH_
+
+;# define USE_ENTRY
+
+# end

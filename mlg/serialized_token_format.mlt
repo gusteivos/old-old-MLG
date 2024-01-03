@@ -1,0 +1,37 @@
+/*
+
+    date: 3/2/2024
+
+*/
+
+;# the header:
+
+    An integer value that identifies how many tokens are recorded.
+
+    00000000  01 00 00 00                                       |....            |
+    00000010
+
+
+;# the text section:
+
+    There may be multiple of these, stores ascii/utf8 strings ending in '\0'.
+
+    00000000  2e 74 65 78 74 48 65 6c  6c 6f 20 57 6f 72 6c 64  |.textHello World|
+    00000010  00 2e 74 65 78 74 5f 65  6e 64 00                 |..text_end.     |
+    0000001b
+
+
+    Above you see a section of text that starts with ".text" and ends with ".text_end\0".
+
+
+;# the token section:
+
+    It should be unique and from there the tokens would be stored.
+
+    00000000  2e 74 6f 6b 65 6e                                 |.token          |
+    00000010
+
+    String pointers of a token must be converted but 
+    first the string should be recorded in some section of text 
+    the position of that string would be the new value for this pointer, TODO.
+

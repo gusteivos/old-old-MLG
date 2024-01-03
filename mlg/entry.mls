@@ -1,0 +1,36 @@
+/*
+
+    date: 1/2/2024
+
+*/
+
+# includeh "entry.mlh"
+
+
+thiscope signed integer fa = 50I;
+
+thiscope signed integer fb = 19I;
+
+
+thiscope func sum(signed integer a, signed integer b) : signed integer
+{
+
+    return a + b;
+
+}
+
+
+# if not defined USE_ENTRY
+
+    sum(fa, fb);
+
+# else
+
+    func entry() : none
+    {
+
+        sum(fa, fb);
+
+    }
+
+# end

@@ -1,0 +1,38 @@
+
+// comments:
+
+    // something
+
+    /*
+    something
+     something
+      something
+       something
+        something
+    */
+
+    ;# something
+
+
+// modifiers:
+
+    constant or const, constant value n can never be modified.
+
+    readonly or rdnly, cannot be directly defined as "v = value" but it can be read, TODO.
+
+    thiscope or thscp, can be modified only in specific scope.
+
+    external or xtrnl, indicates that the "value" was or will be defined in another file.
+
+    signed, notifies numeric types, generally and the default.
+
+    ungned, notifies numeric types.
+
+
+// types:
+
+    integer or int; I.
+    
+    float   or flt; F.
+
+    none             .
