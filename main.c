@@ -96,14 +96,6 @@ int main(int argc, char *argv[])
 
                 continue;
             
-            case MLG_TOKEN_ID    :
-            case MLG_TOKEN_NUMBER:
-
-                next_char = false;
-
-
-                break;
-
             }
 
         }

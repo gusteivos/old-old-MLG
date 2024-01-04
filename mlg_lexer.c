@@ -1,6 +1,35 @@
 #include "mlg_lexer.h"
 
 
+bool is_id_char         (char c)
+{
+
+    return isalpha(c) || c == '_';
+
+}
+
+bool is_word_char       (char c)
+{
+
+    return is_id_char(c) || isdigit(c);
+
+}
+
+bool is_number_char     (char c)
+{
+
+    return isdigit(c);
+
+}
+    
+bool is_word_number_char(char c)
+{
+
+    return is_number_char(c) || c == '.';
+
+}
+
+
 mlg_lexer_t *create_mlg_lexer(char *source)
 {
 
@@ -147,18 +176,16 @@ mlg_token_t *mlg_lexer_parse_id_token(mlg_lexer_t *lexer)
 
     value[0] = lexer->current_source_char;
 
-    mlg_lexer_next_char(lexer);
-
-    while (isalpha(lexer->current_source_char))
+    while (is_word_char(mlg_lexer_peek_char(lexer, 1)))
     {
+
+        mlg_lexer_next_char(lexer);
 
         size_t previous_value_size = value_size++;
 
         value = realloc(value, value_size);
 
         value[previous_value_size - 1] = lexer->current_source_char;
-
-        mlg_lexer_next_char(lexer);
 
     }
     
@@ -190,18 +217,16 @@ mlg_token_t *mlg_lexer_parse_number_token(mlg_lexer_t *lexer)
 
     value[0] = lexer->current_source_char;
 
-    mlg_lexer_next_char(lexer);
-
-    while (isdigit(lexer->current_source_char) || lexer->current_source_char == '.')
+    while (is_word_number_char(mlg_lexer_peek_char(lexer, 1)))
     {
+
+        mlg_lexer_next_char(lexer);
 
         size_t previous_value_size = value_size++;
 
         value = realloc(value, value_size);
 
         value[previous_value_size - 1] = lexer->current_source_char;
-
-        mlg_lexer_next_char(lexer);
 
     }
     
@@ -232,7 +257,7 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
 
         mlg_token_t *new_token = NULL;
 
-        if (isalpha(lexer->current_source_char))
+        if (is_id_char(lexer->current_source_char))
         {
 
             new_token = mlg_lexer_parse_id_token(lexer);
@@ -241,7 +266,7 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
             goto return_new_token;
 
         }
-        else if (isdigit(lexer->current_source_char))
+        else if (is_number_char(lexer->current_source_char))
         {
 
             new_token = mlg_lexer_parse_number_token(lexer);
@@ -262,19 +287,13 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
 
             break;
         
-
-        case '.':
-
-            new_token = create_mlg_token(MLG_TOKEN_TODO, "a dot.");
-
-            break;
-
-
         case '#':
 
             new_token = create_mlg_token(MLG_TOKEN_TODO, "a hash tag, possibly a compiler directive.");
 
-            mlg_lexer_skip_line(lexer);
+            /* temp: */
+                
+                mlg_lexer_skip_line(lexer);
 
             break;
 
@@ -346,6 +365,12 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
         case ',':
 
             new_token = create_mlg_token(MLG_TOKEN_COMMA, NULL);
+
+            break;
+
+        case '.':
+
+            new_token = create_mlg_token(MLG_TOKEN_DOT, NULL);
 
             break;
 

@@ -22,6 +22,8 @@
 
         MLG_TOKEN_COMMA,
 
+        MLG_TOKEN_DOT  ,
+
         MLG_TOKEN_COLON    ,
 
         MLG_TOKEN_SEMICOLON,

@@ -1,15 +1,15 @@
 /*
 
-    date: 1/2/2024
+    date: 4/2/2024
 
 */
 
 # includeh "entry.mlh"
 
 
-thiscope signed integer fa = 50I;
+thiscope signed integer f_a0 = 50I;
 
-thiscope signed integer fb = 19I;
+thiscope signed integer f_b0 = 19I;
 
 
 thiscope func sum(signed integer a, signed integer b) : signed integer

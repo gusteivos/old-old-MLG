@@ -3,6 +3,7 @@
 #define MLG_LEXER_H_
 
     #include <ctype.h>
+    #include <stdbool.h>
     #include "mlg_token.h"
 
 
@@ -20,6 +21,15 @@
 
     } mlg_lexer_t;
 
+
+    extern bool is_id_char         (char c);
+
+    extern bool is_word_char       (char c);
+    
+    extern bool is_number_char     (char c);
+    
+    extern bool is_word_number_char(char c);
+    
 
     extern mlg_lexer_t *create_mlg_lexer(char *source);
 
