@@ -16,8 +16,8 @@
 
 
 
-    };
+    } mlg_AST_t;
     
-    
+
 
 #endif
