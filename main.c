@@ -29,9 +29,9 @@ int main(int argc, char *argv[])
 
 
     fseek(source_file, 0, SEEK_END);
-    
+
     long source_file_size = ftell(source_file);
-    
+
     fseek(source_file, 0, SEEK_SET);
 
 
@@ -39,15 +39,15 @@ int main(int argc, char *argv[])
 
     if (source_file_data == NULL)
     {
-    
+
         printf("todo: .\n");
 
-    
+
         fclose(source_file);
-    
+
 
         return EXIT_FAILURE;
-    
+
     }
 
 
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     mlg_token_t *curent_token = NULL;
 
     mlg_lexer_skip_spaces(lexer);
-    
+
 
     while(!can_exit)
     {
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
         if (curent_token != NULL)
         {
 
-            printf("token (type: %d), (value: %s).\n", curent_token->type, curent_token->value);
+            printf("token (type: %d), (str type: %s), (value: %s).\n", curent_token->type, mlg_token_type_to_string(curent_token->type), curent_token->value);
 
 
             switch (curent_token->type)
@@ -95,19 +95,19 @@ int main(int argc, char *argv[])
 
 
                 continue;
-            
+
             }
 
         }
 
-    
+
         if (next_char)
         {
 
             mlg_lexer_next_char  (lexer);
 
         }
-        
+
         mlg_lexer_skip_spaces(lexer);
 
     }
