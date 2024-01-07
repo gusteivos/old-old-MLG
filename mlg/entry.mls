@@ -1,15 +1,15 @@
 /*
 
-    date: 4/2/2024
+    date: 7/2/2024 | dd/mm/yyyy
 
 */
 
 # includeh "entry.mlh"
 
 
-thiscope signed integer f_a0 = 50I;
+thiscope signed integer p_a0 = 50I;
 
-thiscope signed integer f_b0 = 19I;
+thiscope signed integer p_b0 = 19I;
 
 
 thiscope func sum(signed integer a, signed integer b) : signed integer
@@ -22,14 +22,14 @@ thiscope func sum(signed integer a, signed integer b) : signed integer
 
 # if not defined USE_ENTRY
 
-    sum(fa, fb);
+    sum(p_a0, p_b0);
 
 # else
 
     func entry() : none
     {
 
-        sum(fa, fb);
+        sum(p_a0, p_b0);
 
     }
 
