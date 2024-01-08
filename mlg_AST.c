@@ -21,17 +21,17 @@ mlg_AST_node_t *create_AST_node(mlg_AST_node_type_t type)
 
     switch (new_ast_node->type)
     {
-    
+
     case MLG_AST_NODE_TYPE_VAR_DEC:
     case MLG_AST_NODE_TYPE_VAR_DEF:
 
         new_ast_node->other_value = (void *)create_mlg_type_value(MLG_TYPE_NONE);
 
         break;
-    
+
     }
 
-    
+
 endoffunc:
 
     return new_ast_node;

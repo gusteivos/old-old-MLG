@@ -1,4 +1,4 @@
-#include "mlg_lang_type.h"
+#include "mlg_type.h"
 
 
 mlg_type_value_t *create_mlg_type_value(mlg_type_t type)

@@ -2,7 +2,7 @@
 #ifndef MLG_AST_H_
 #define MLG_AST_H_
 
-    #include "mlg_lang_type.h"
+    #include "mlg_type.h"
 
 
     typedef enum mlg_AST_node_type_e
