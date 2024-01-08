@@ -271,6 +271,9 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
     }
 
 
+    mlg_lexer_skip_spaces(lexer);
+
+
     if (lexer->current_source_char != '\0')
     {
 
@@ -294,9 +297,6 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
             goto return_new_token;
 
         }
-
-
-        mlg_lexer_skip_spaces(lexer);
 
 
         switch (lexer->current_source_char)
@@ -508,7 +508,7 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
 
             default:
         
-                new_token = create_mlg_token(MLG_TOKEN_SUM_OPERATOR, NULL);
+                new_token = create_mlg_token(MLG_TOKEN_DIV_OPERATOR, NULL);
 
 
                 break;
