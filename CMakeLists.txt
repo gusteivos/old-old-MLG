@@ -16,9 +16,6 @@ set(executable_header_files
 )
 
 
-find_package(SDL2 REQUIRED)
-
-
 add_executable(${CMAKE_PROJECT_NAME} ${executable_source_files})
 
 include_directories(${executable_header_files})
