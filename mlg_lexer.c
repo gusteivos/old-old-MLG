@@ -107,6 +107,25 @@ char mlg_lexer_peek_char(mlg_lexer_t *lexer, long offset)
 
 }
 
+bool mlg_lexer_eat_char(mlg_lexer_t *lexer, char c)
+{
+
+    bool return_value = false;
+
+    if (mlg_lexer_peek_char(lexer, 1) == c)
+    {
+
+        return_value = true;
+
+        mlg_lexer_next_char(lexer);
+
+    }
+
+
+    return return_value;
+
+}
+
 
 void mlg_lexer_skip_spaces(mlg_lexer_t *lexer)
 {
@@ -277,6 +296,9 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
         }
 
 
+        mlg_lexer_skip_spaces(lexer);
+
+
         switch (lexer->current_source_char)
         {
 
@@ -297,71 +319,6 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
 
             break;
 
-        case '/':
-            {
-
-                char peeked_char = mlg_lexer_peek_char(lexer, 1);
-
-                switch (peeked_char)
-                {
-
-                case '/':
-                    
-                    printf("line comment, skipping this line.\n");
-
-                    mlg_lexer_skip_line(lexer);
-
-                    break;
-
-                case '*':
-
-                    mlg_lexer_next_char(lexer);
-                    
-                    mlg_lexer_next_char(lexer);
-
-
-                    while (lexer->current_source_char != '\0')
-                    {
-
-                        if (lexer->current_source_char == '*')
-                        {
-
-                            peeked_char = mlg_lexer_peek_char(lexer, 1);
-                            
-                            if (peeked_char == '/')
-                            {
-
-                                break;
-
-                            }
-
-                        }
-
-
-                        mlg_lexer_next_char(lexer);                
-
-                    }
-                    
-                    
-                    break;
-
-                }
-
-            }
-            break;
-
-        case '(':
-
-            new_token = create_mlg_token(MLG_TOKEN_LEFT_PARENTHESIS , NULL);
-
-            break;
-
-        case ')':
-
-            new_token = create_mlg_token(MLG_TOKEN_RIGHT_PARENTHESIS, NULL);
-
-            break;
-
         case ',':
 
             new_token = create_mlg_token(MLG_TOKEN_COMMA, NULL);
@@ -374,6 +331,7 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
 
             break;
 
+
         case ':':
         
             new_token = create_mlg_token(MLG_TOKEN_COLON, NULL);
@@ -381,8 +339,8 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
             break;
 
         case ';':
-                
-            if (mlg_lexer_peek_char(lexer, 1) == '#')
+
+            if (mlg_lexer_eat_char(lexer, '#'))
             {
 
                 printf("line comment, skipping this line.\n");
@@ -393,18 +351,14 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
             else
             {
 
+
                 new_token = create_mlg_token(MLG_TOKEN_SEMICOLON, NULL);
 
             }
 
             break;
 
-        case '<':
 
-            new_token = create_mlg_token(MLG_TOKEN_LESS_THAN   , NULL);
-
-            break;
-        
         case '=':
 
             switch (mlg_lexer_peek_char(lexer, 1))
@@ -412,64 +366,86 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
 
             case '<':
                 
-                new_token = create_mlg_token(MLG_TOKEN_LEFT_ARROW , NULL);
+                new_token = create_mlg_token(MLG_TOKEN_LES_OR_EQUAL, NULL);
 
                 mlg_lexer_next_char(lexer);
 
                 break;
             
+
             case '>':
 
-                new_token = create_mlg_token(MLG_TOKEN_RIGHT_ARROW, NULL);
+                new_token = create_mlg_token(MLG_TOKEN_BIG_OR_EQUAL, NULL);
                 
                 mlg_lexer_next_char(lexer);
 
                 break;
 
+
             default:
 
-                new_token = create_mlg_token(MLG_TOKEN_EQUALS     , NULL);
+                new_token = create_mlg_token(MLG_TOKEN_EQUALS, NULL);
+
 
                 break;
             
             }
 
             break;
+        
+        case '<':
+
+            new_token = create_mlg_token(MLG_TOKEN_LES_THAN, NULL);
+
+            break;
 
         case '>':
 
-            new_token = create_mlg_token(MLG_TOKEN_GREATER_THAN, NULL);
+            new_token = create_mlg_token(MLG_TOKEN_BIG_THAN, NULL);
+
+            break;
+
+
+        case '(':
+
+            new_token = create_mlg_token(MLG_TOKEN_L_PARENTHESIS, NULL);
+
+            break;
+
+        case ')':
+
+            new_token = create_mlg_token(MLG_TOKEN_R_PARENTHESIS, NULL);
+
+            break;
+
+        case '[':
+
+            new_token = create_mlg_token(MLG_TOKEN_L_BRACKET, NULL);
+
+            break;
+
+        case ']':
+
+            new_token = create_mlg_token(MLG_TOKEN_R_BRACKET, NULL);
 
             break;
 
         case '{':
 
-            new_token = create_mlg_token(MLG_TOKEN_LEFT_BRACE , NULL);
+            new_token = create_mlg_token(MLG_TOKEN_L_BRACE, NULL);
 
             break;
 
         case '}':
 
-            new_token = create_mlg_token(MLG_TOKEN_RIGHT_BRACE, NULL);
+            new_token = create_mlg_token(MLG_TOKEN_R_BRACE, NULL);
 
             break;
 
+
         case '-':
 
-            if (mlg_lexer_peek_char(lexer, 1) == '>')
-            {
-
-                new_token = create_mlg_token(MLG_TOKEN_ARROW, NULL);
-
-                mlg_lexer_next_char(lexer);
-
-            }
-            else
-            {
-
-                new_token = create_mlg_token(MLG_TOKEN_SUB_OPERATOR, NULL);
-
-            }
+            new_token = create_mlg_token(MLG_TOKEN_SUB_OPERATOR, NULL);
 
             break;
 
@@ -478,6 +454,69 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
             new_token = create_mlg_token(MLG_TOKEN_SUM_OPERATOR, NULL);
             
             break;
+
+        case '*':
+
+            new_token = create_mlg_token(MLG_TOKEN_MUL_OPERATOR, NULL);
+
+            break;
+
+        case '/':
+
+            switch (mlg_lexer_peek_char(lexer, 1))
+            {
+
+            case '/':
+                
+                mlg_lexer_next_char(lexer);
+
+                mlg_lexer_skip_line(lexer);
+
+
+                break;
+
+
+            case '*':
+            
+                mlg_lexer_next_char(lexer);
+                
+                mlg_lexer_next_char(lexer);
+
+
+                while (lexer->current_source_char != '\0')
+                {
+
+                    if (lexer->current_source_char == '*')
+                    {
+                        
+                        if (mlg_lexer_eat_char(lexer, '/'))
+                        {
+
+                            break;
+
+                        }
+
+                    }
+
+
+                    mlg_lexer_next_char(lexer);                
+
+                }
+                
+                break;    
+
+
+            default:
+        
+                new_token = create_mlg_token(MLG_TOKEN_SUM_OPERATOR, NULL);
+
+
+                break;
+            
+            }
+            
+            break;
+
 
         default:
 

@@ -21,26 +21,27 @@
         MLG_TOKEN_COLON    ,
         MLG_TOKEN_SEMICOLON,
 
-        MLG_TOKEN_LESS_THAN   ,
         MLG_TOKEN_EQUALS      ,
-        MLG_TOKEN_GREATER_THAN,
+        MLG_TOKEN_LES_THAN    ,
+        MLG_TOKEN_BIG_THAN    ,
+        MLG_TOKEN_LES_OR_EQUAL,
+        MLG_TOKEN_BIG_OR_EQUAL,
 
-        MLG_TOKEN_LEFT_ARROW ,
-        MLG_TOKEN_ARROW      ,
-        MLG_TOKEN_RIGHT_ARROW,
-
-        MLG_TOKEN_LEFT_PARENTHESIS ,
-        MLG_TOKEN_RIGHT_PARENTHESIS,
-        MLG_TOKEN_LEFT_BRACKET     ,
-        MLG_TOKEN_RIGHT_BRACKET    ,
-        MLG_TOKEN_LEFT_BRACE       ,
-        MLG_TOKEN_RIGHT_BRACE      ,
+        MLG_TOKEN_L_PARENTHESIS,
+        MLG_TOKEN_R_PARENTHESIS,
+        MLG_TOKEN_L_BRACKET    ,
+        MLG_TOKEN_R_BRACKET    ,
+        MLG_TOKEN_L_BRACE      ,
+        MLG_TOKEN_R_BRACE      ,
 
         MLG_TOKEN_SUB_OPERATOR,
         MLG_TOKEN_SUM_OPERATOR,
+        MLG_TOKEN_MUL_OPERATOR,
+        MLG_TOKEN_DIV_OPERATOR,
 
-        MLG_TOKEN_EOF ,
         MLG_TOKEN_TODO,
+
+        MLG_TOKEN_EOF = EOF
 
     } mlg_token_type_t;
 

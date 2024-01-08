@@ -18,26 +18,27 @@ char *mlg_token_type_to_string(mlg_token_type_t type)
         case MLG_TOKEN_COLON    : return "MLG_TOKEN_COLON"    ;
         case MLG_TOKEN_SEMICOLON: return "MLG_TOKEN_SEMICOLON";
 
-        case MLG_TOKEN_LESS_THAN   : return "MLG_TOKEN_LESS_THAN"   ;
-        case MLG_TOKEN_EQUALS      : return "MLG_TOKEN_EQUALS"      ;
-        case MLG_TOKEN_GREATER_THAN: return "MLG_TOKEN_GREATER_THAN";
+        case MLG_TOKEN_EQUALS  : return "MLG_TOKEN_EQUALS"  ;
+        case MLG_TOKEN_LES_THAN: return "MLG_TOKEN_LES_THAN";
+        case MLG_TOKEN_BIG_THAN: return "MLG_TOKEN_BIG_THAN";
+        case MLG_TOKEN_LES_OR_EQUAL: return "MLG_TOKEN_LES_OR_EQUAL";
+        case MLG_TOKEN_BIG_OR_EQUAL: return "MLG_TOKEN_BIG_OR_EQUAL";
 
-        case MLG_TOKEN_LEFT_ARROW : return "MLG_TOKEN_LEFT_ARROW" ;
-        case MLG_TOKEN_ARROW      : return "MLG_TOKEN_ARROW"      ;
-        case MLG_TOKEN_RIGHT_ARROW: return "MLG_TOKEN_RIGHT_ARROW";
+        case MLG_TOKEN_L_PARENTHESIS: return "MLG_TOKEN_L_PARENTHESIS";
+        case MLG_TOKEN_R_PARENTHESIS: return "MLG_TOKEN_R_PARENTHESIS";
+        case MLG_TOKEN_L_BRACKET    : return "MLG_TOKEN_L_BRACKET"    ;
+        case MLG_TOKEN_R_BRACKET    : return "MLG_TOKEN_R_BRACKET"    ;
+        case MLG_TOKEN_L_BRACE      : return "MLG_TOKEN_L_BRACE"      ;
+        case MLG_TOKEN_R_BRACE      : return "MLG_TOKEN_R_BRACE"      ;
 
-        case MLG_TOKEN_LEFT_PARENTHESIS : return "MLG_TOKEN_LEFT_PARENTHESIS" ;
-        case MLG_TOKEN_RIGHT_PARENTHESIS: return "MLG_TOKEN_RIGHT_PARENTHESIS";
-        case MLG_TOKEN_LEFT_BRACKET     : return "MLG_TOKEN_LEFT_BRACKET"     ;
-        case MLG_TOKEN_RIGHT_BRACKET    : return "MLG_TOKEN_RIGHT_BRACKET"    ;
-        case MLG_TOKEN_LEFT_BRACE       : return "MLG_TOKEN_LEFT_BRACE"       ;
-        case MLG_TOKEN_RIGHT_BRACE      : return "MLG_TOKEN_RIGHT_BRACE"      ;
-
-        case MLG_TOKEN_SUB_OPERATOR: return "MLG_TOKEN_SUB_OPERATOR";
         case MLG_TOKEN_SUM_OPERATOR: return "MLG_TOKEN_SUM_OPERATOR";
+        case MLG_TOKEN_SUB_OPERATOR: return "MLG_TOKEN_SUB_OPERATOR";
+        case MLG_TOKEN_MUL_OPERATOR: return "MLG_TOKEN_MUL_OPERATOR";
+        case MLG_TOKEN_DIV_OPERATOR: return "MLG_TOKEN_DIV_OPERATOR";
 
-        case MLG_TOKEN_EOF : return "MLG_TOKEN_EOF" ;
         case MLG_TOKEN_TODO: return "MLG_TOKEN_TODO";
+
+        case MLG_TOKEN_EOF : return "MLG_TOKEN_EOF";
 
     }
 

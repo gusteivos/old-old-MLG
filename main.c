@@ -78,12 +78,10 @@ int main(int argc, char *argv[])
         curent_token = mlg_lexer_next_token(lexer);
 
 
-        bool next_char = true;
-
         if (curent_token != NULL)
         {
 
-            printf("token (type: %d), (str type: %s), (value: %s).\n", curent_token->type, mlg_token_type_to_string(curent_token->type), curent_token->value);
+            printf("token (type: %2d), (str type: %s), (value: %s).\n", curent_token->type, mlg_token_type_to_string(curent_token->type), curent_token->value);
 
 
             switch (curent_token->type)
@@ -92,7 +90,7 @@ int main(int argc, char *argv[])
             case MLG_TOKEN_EOF:
 
                 can_exit = true;
-
+                
 
                 continue;
 
@@ -101,14 +99,7 @@ int main(int argc, char *argv[])
         }
 
 
-        if (next_char)
-        {
-
-            mlg_lexer_next_char  (lexer);
-
-        }
-
-        mlg_lexer_skip_spaces(lexer);
+        mlg_lexer_next_char(lexer);
 
     }
 
