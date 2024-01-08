@@ -9,4 +9,7 @@
 
     #include "mlg.h"
 
+
+    extern char *read_file_as_string(const char *filename);
+
 #endif

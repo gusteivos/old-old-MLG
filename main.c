@@ -1,5 +1,78 @@
 #include "main.h"
 
+char *read_file_as_string(const char *filename)
+{
+
+    char *data_buffer = NULL;
+
+
+    FILE *file = fopen(filename, "r");
+
+    if (file == NULL)
+    {
+
+        fprintf(stderr, "Error opening file in path: %s.\n", filename);
+
+
+        goto endoffunc;
+
+    }
+
+
+    fseek(file, 0, SEEK_END);
+
+    long file_size = ftell(file);
+
+    rewind(file);
+
+
+    data_buffer = (char *)malloc((file_size + 1) * sizeof(char));
+
+    if (data_buffer == NULL)
+    {
+
+        fprintf(stderr, "Memory allocation error while reading file: %s.\n", filename);
+
+
+        fclose(file);
+
+
+        goto endoffunc;
+
+    }
+
+
+    size_t read_elements = fread(data_buffer, sizeof(char), (size_t)file_size, file);
+
+    if (read_elements == 0)
+    {
+
+        fprintf(stderr, "Error reading file: %s.\n", filename);
+
+
+        free(data_buffer);
+
+        data_buffer = NULL;
+
+        fclose(file);
+
+
+        goto endoffunc;
+
+    }
+
+
+    data_buffer[read_elements] = '\0';
+
+    fclose(file);
+
+
+endoffunc:
+
+    return data_buffer;
+
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -14,28 +87,7 @@ int main(int argc, char *argv[])
 
     }
 
-
-    FILE *source_file = fopen(argv[1], "rb");
-
-    if (source_file == NULL)
-    {
-
-        printf("Error opening source_file with patch: %s, errno: %d.\n", argv[1], errno);
-
-
-        return EXIT_FAILURE;
-
-    }
-
-
-    fseek(source_file, 0, SEEK_END);
-
-    long source_file_size = ftell(source_file);
-
-    fseek(source_file, 0, SEEK_SET);
-
-
-    char *source_file_data = (char *)malloc(source_file_size * sizeof(char));
+    char *source_file_data = read_file_as_string(argv[1]);
 
     if (source_file_data == NULL)
     {
@@ -43,15 +95,9 @@ int main(int argc, char *argv[])
         printf("todo: .\n");
 
 
-        fclose(source_file);
-
-
         return EXIT_FAILURE;
 
     }
-
-
-    fread(source_file_data, sizeof(char), source_file_size, source_file);
 
 
     printf("############source############\n");
@@ -90,7 +136,7 @@ int main(int argc, char *argv[])
             case MLG_TOKEN_EOF:
 
                 can_exit = true;
-                
+
 
                 continue;
 
@@ -102,9 +148,6 @@ int main(int argc, char *argv[])
         mlg_lexer_next_char(lexer);
 
     }
-
-
-    fclose(source_file);
 
 
     return EXIT_SUCCESS;
