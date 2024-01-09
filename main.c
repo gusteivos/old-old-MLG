@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 
     printf("############source############\n");
 
-    printf(source_file_data);
+    printf("%s", source_file_data);
 
     printf("#############code#############\n");
 

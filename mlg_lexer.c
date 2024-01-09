@@ -253,7 +253,7 @@ mlg_token_t *mlg_lexer_parse_number_token(mlg_lexer_t *lexer)
     value[value_size - 1] = '\0';
 
 
-    return create_mlg_token(MLG_TOKEN_NUMBER, value);
+    return create_mlg_token(MLG_TOKEN_LITERAL_NUMBER, value);
 
 }
 
@@ -283,6 +283,14 @@ mlg_token_t *mlg_lexer_next_token(mlg_lexer_t *lexer)
         {
 
             new_token = mlg_lexer_parse_id_token(lexer);
+
+
+            if (mlg_token_id_to_keyword(new_token) == false)
+            {
+
+                fprintf(stderr, "todo: .\n");
+
+            }
 
 
             goto return_new_token;
