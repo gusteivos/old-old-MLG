@@ -77,7 +77,7 @@ char mlg_lexer_next_char(mlg_lexer_t *lexer)
     }
 
 
-    if (lexer->source_index < lexer->source_size && lexer->current_source_char != '\0')
+    if (lexer->current_source_char != '\0' && lexer->source_index < lexer->source_size)
     {
 
         lexer->source_index++;
@@ -103,7 +103,7 @@ char mlg_lexer_peek_char(mlg_lexer_t *lexer, long offset)
     }
 
 
-    return lexer->current_source_char = lexer->source[lexer->source_index + offset];
+    return lexer->source[lexer->source_index + offset];
 
 }
 
@@ -141,7 +141,7 @@ void mlg_lexer_skip_spaces(mlg_lexer_t *lexer)
     }
 
 
-    while (lexer->current_source_char == ' ' || lexer->current_source_char == '\n' || lexer->current_source_char == '\t')
+    while (lexer->current_source_char == ' ' || lexer->current_source_char == '\n' || lexer->current_source_char == '\t' || lexer->current_source_char == '\r')
     {
 
         mlg_lexer_next_char(lexer);
