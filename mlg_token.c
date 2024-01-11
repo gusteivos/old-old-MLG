@@ -23,7 +23,11 @@ mlg_keyword_token_t keywords[] =
     {"integer", "int", MLG_TOKEN_KW_INT},
     {"float"  , "flt", MLG_TOKEN_KW_FLT},
 
-    {"none"  , "", MLG_TOKEN_KW_NONE},
+    {"none", "", MLG_TOKEN_KW_NONE},
+
+/* todo: */
+    
+    {"return", "", MLG_TOKEN_KW_RETURN},
 
 
     {NULL, NULL, MLG_TOKEN_EOF}
@@ -57,6 +61,8 @@ char *mlg_token_type_to_string(mlg_token_type_t type)
         case MLG_TOKEN_KW_FLT: return "MLG_TOKEN_KW_FLT";
 
         case MLG_TOKEN_KW_NONE: return "MLG_TOKEN_KW_NONE";
+
+        case MLG_TOKEN_KW_RETURN: return "MLG_TOKEN_KW_RETURN";
 
         case MLG_TOKEN_COMMA: return "MLG_TOKEN_COMMA";
         case MLG_TOKEN_DOT  : return "MLG_TOKEN_DOT"  ;

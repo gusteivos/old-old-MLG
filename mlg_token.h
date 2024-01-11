@@ -32,6 +32,8 @@
 
         MLG_TOKEN_KW_NONE,
 
+        MLG_TOKEN_KW_RETURN,
+
         MLG_TOKEN_COMMA,
         MLG_TOKEN_DOT  ,
 
